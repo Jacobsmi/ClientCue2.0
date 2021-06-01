@@ -1,8 +1,20 @@
 @media screen and (min-width: 481px) {
-  .Signup{
+  .Signup {
     height: 100vh;
     min-height: 600px;
     width: 100vw;
     background-color: #0E1116;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .ImagePanel{
+    display: flex;
+    align-items: center;
+  }
+  .SignupImage {
+    
+    object-fit: cover;
+    width: 100%;
+    max-height: 100%;
   }
 }
