@@ -1,3 +1,77 @@
+@media screen and (max-width: 480px) {
+  .Home {
+    height: 100vh;
+    min-height: 600px;
+    width: 100vw;
+    background-color: #0E1116;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    flex: 1;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+  }
+  .Logo {
+    font-size: 24px;
+    font-weight: 600;
+    margin-left: 5vw;
+  }
+  nav {
+    display: none;
+  }
+  .AccountLinks {
+    flex: 1;
+    text-align: right;
+    margin-right: 5vw;
+  }
+  .AccountLinks a {
+    margin-left: 7vw;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .SignupLink {
+    padding: 8px;
+    background-color: #374A67;
+    border-radius: 8px;
+  }
+  .Body {
+    flex: 9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  .Header {
+    text-align: center;
+    width: 80vw;
+    font-size: 6vw;
+    font-weight: 700;
+  }
+  .SubHeader {
+    margin-top: 5vh;
+    text-align: center;
+    width: 100vw;
+    font-size: 5vw;
+    font-weight: 600;
+  }
+  .GetStartedButton {
+    margin-top: 20vh;
+    text-decoration: none;
+    color: white;
+    background-color: #374A67;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 6vw;
+    font-weight: 600;
+  }
+}
+
 @media screen and (min-width: 481px) {
   .Home {
     height: 100vh;
@@ -7,7 +81,6 @@
     display: flex;
     flex-direction: column;
   }
-  
   header {
     flex: 1;
     color: white;
@@ -16,43 +89,36 @@
     justify-content: center;
     height: 10vh;
   }
-  
   .Logo {
-    margin-left: 2vw;   
+    margin-left: 2vw;
     font-size: 24px;
     font-weight: 600;
   }
-  
   nav {
     flex-grow: 1;
     text-align: right;
     margin-right: 10vw;
   }
-  
   nav a {
     margin-left: 2vw;
     color: white;
     text-decoration: none;
     font-weight: 600;
   }
-  
   .AccountLinks {
     margin-right: 2vw;
   }
-  
   .AccountLinks a {
     margin-left: 2vw;
     color: white;
     text-decoration: none;
     font-weight: 600;
   }
-  
   .SignupLink {
     padding: 8px;
     background-color: #374A67;
     border-radius: 8px;
   }
-  
   .Body {
     flex: 9;
     display: flex;
@@ -60,24 +126,21 @@
     align-items: center;
     color: white;
   }
-  
-  .Header{
+  .Header {
     margin-top: 15vh;
     text-align: center;
     width: 60vw;
     font-size: 3.5vw;
     font-weight: 700;
   }
-  
-  .SubHeader{
+  .SubHeader {
     margin-top: 15vh;
     text-align: center;
     width: 60vw;
     font-size: 2.5vw;
     font-weight: 600;
   }
-  
-  .GetStartedButton{
+  .GetStartedButton {
     margin-top: 10vh;
     text-decoration: none;
     color: white;
