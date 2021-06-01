@@ -1,4 +1,79 @@
-@media screen and (min-width: 481px) {
+@media screen and (max-width: 1100px) {
+  /* Signup Panel Styling */
+  .Signup {
+    height: 100vh;
+    min-height: 600px;
+    width: 100vw;
+    background-color: #0E1116;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .SignupPanel {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin-left: 10vw;
+  }
+  .SignupForm {
+    margin-top: 10vh;
+  }
+  .SignupDoubleInputLabel {
+    display: inline-block;
+    width: 40vw;
+    font-size: 2vh;
+  }
+  .SignupDoubleInput {
+    box-sizing: border-box;
+    width: 35vw;
+    margin-right: 5vw;
+    font-size: 2vh;
+    background-color: #0E1116;
+    border: none;
+    border-bottom: 1px solid white;
+    outline: none;
+    caret-color: white;
+    color: white;
+  }
+  .SignupInputLabel {
+    display: block;
+    font-size: 2vh;
+    margin-top: 5vh;
+  }
+  .SignupInput {
+    margin-top: 1vh;
+    box-sizing: border-box;
+    width: 75vw;
+    font-size: 2vh;
+    background-color: #0E1116;
+    border: none;
+    border-bottom: 1px solid white;
+    outline: none;
+    caret-color: white;
+    color: white;
+  }
+  .SignupButton {
+    margin-top: 10vh;
+    background-color: #374A67;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 2vh;
+    font-weight: 600;
+    width: 75vw;
+    padding: 10px;
+  }
+
+  /* Image Panel Styling */
+  .ImagePanel {
+    display: none;
+    align-items: center;
+  }
+  
+}
+
+@media screen and (min-width: 1101px) {
+  /* Signup Panel Styling */
   .Signup {
     height: 100vh;
     min-height: 600px;
@@ -7,12 +82,68 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
-  .ImagePanel{
+  .SignupPanel {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin-left: 2vw;
+  }
+  .SignupForm {
+    margin-top: 10vh;
+  }
+  .SignupDoubleInputLabel {
+    display: inline-block;
+    width: 20vw;
+    font-size: 1.5vw;
+  }
+  .SignupDoubleInput {
+    box-sizing: border-box;
+    width: 15vw;
+    margin-right: 5vw;
+    font-size: 1.5vw;
+    background-color: #0E1116;
+    border: none;
+    border-bottom: 1px solid white;
+    outline: none;
+    caret-color: white;
+    color: white;
+  }
+  .SignupInputLabel {
+    display: block;
+    font-size: 1.5vw;
+    margin-top: 5vh;
+  }
+  .SignupInput {
+    margin-top: 1vh;
+    box-sizing: border-box;
+    width: 35vw;
+    font-size: 1.5vw;
+    background-color: #0E1116;
+    border: none;
+    border-bottom: 1px solid white;
+    outline: none;
+    caret-color: white;
+    color: white;
+  }
+  .SignupButton {
+    margin-top: 10vh;
+    background-color: #374A67;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 1.5vw;
+    font-weight: 600;
+    width: 20vw;
+    padding: 10px;
+  }
+
+  /* Image Panel Styling */
+  .ImagePanel {
     display: flex;
     align-items: center;
   }
   .SignupImage {
-    
     object-fit: cover;
     width: 100%;
     max-height: 100%;
