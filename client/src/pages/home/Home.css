@@ -78,6 +78,7 @@
     background-color: #0E1116;
     display: grid;
     grid-template-rows: 1fr 9fr;
+    overflow-x: hidden;
   }
   header {
     flex: 1;

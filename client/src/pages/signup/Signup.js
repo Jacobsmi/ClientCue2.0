@@ -1,10 +1,43 @@
 import './Signup.css'
 import arrived from './Arrived.svg'
+import { useState } from 'react'
 
 export default function Signup() {
 
+  const [errors, setErrors] = useState(false)
+
   function signupSubmit(){
-    console.log("Sign Up submitted")
+    // Dynamically track any errors found by validation in error string that will be conditionally displayed based on if any errors are found
+    let errorString = 'Error(s): <ul>'
+
+    // Input validation
+
+    // validate first name
+    const validFirstName = /^[a-zA-Z\-']{2,50}$/.test(document.getElementById("SignupFirstName").value)
+    // if invalid add to error string
+    if(!validFirstName){
+      errorString += '<li>Invalid First Name</li>'
+    }
+
+    // validate last name
+    const validLastName = /^[a-zA-Z\-']{2,50}$/.test(document.getElementById("SignupLastName").value)
+    // if invalid add to error string
+    if(!validLastName){
+      errorString += '<li>Invalid Last Name</li>'
+    }
+
+
+    // close unordered list and add the error string generated to the div
+    errorString += '</ul>'
+    document.getElementById("SignupErrors").innerHTML = errorString
+
+    if(validFirstName && validLastName){
+      console.log("All fields valid")
+      setErrors(false)
+    }else{
+      setErrors(true)
+    }
+    console.log(validFirstName)
   }
 
   return (
@@ -13,6 +46,7 @@ export default function Signup() {
       <div className='SignupPanel'>
         <h1>Sign Up</h1>
         <div className='SignupForm'>
+          <div id='SignupErrors' style={{'display': `${errors ? 'block': 'none'}`}}></div>
           <span>
             <label htmlFor='SignupFirstName' className='SignupDoubleInputLabel'>First Name</label>
             <label htmlFor='SignupLastName' className='SignupDoubleInputLabel'>Last Name</label>

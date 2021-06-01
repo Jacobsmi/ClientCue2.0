@@ -1,7 +1,7 @@
 @media screen and (max-width: 1100px) {
   /* Signup Panel Styling */
   .Signup {
-    height: 100vh;
+    height: 100%;
     min-height: 600px;
     width: 100vw;
     background-color: #0E1116;
@@ -9,6 +9,7 @@
     grid-template-columns: 1fr;
   }
   .SignupPanel {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     color: white;
@@ -53,6 +54,7 @@
   }
   .SignupButton {
     margin-top: 10vh;
+    margin-bottom: 5vh;
     background-color: #374A67;
     color: white;
     border: none;
@@ -62,6 +64,7 @@
     font-weight: 600;
     width: 75vw;
     padding: 10px;
+
   }
 
   /* Image Panel Styling */
@@ -75,7 +78,7 @@
 @media screen and (min-width: 1101px) {
   /* Signup Panel Styling */
   .Signup {
-    height: 100vh;
+    height: 100%;
     min-height: 600px;
     width: 100vw;
     background-color: #0E1116;
@@ -83,13 +86,14 @@
     grid-template-columns: 1fr 1fr;
   }
   .SignupPanel {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     color: white;
     margin-left: 2vw;
   }
   .SignupForm {
-    margin-top: 10vh;
+    margin-top: 10vh;   
   }
   .SignupDoubleInputLabel {
     display: inline-block;
@@ -127,6 +131,7 @@
   }
   .SignupButton {
     margin-top: 10vh;
+    margin-bottom: 5vh;
     background-color: #374A67;
     color: white;
     border: none;
