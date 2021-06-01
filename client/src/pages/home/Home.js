@@ -31,7 +31,17 @@ export default function Home() {
         </div>
       </header>
 
-      
+      <div className='Body'>
+        <div className='Header'>
+          Make managing customer relationships easy.
+        </div>
+        <div className='SubHeader'>
+          Start converting interactions into sales today.
+        </div>
+        <Link to='/signup' className='GetStartedButton'>
+          Get Started
+        </Link>
+      </div>
     </div>
   )
 }
