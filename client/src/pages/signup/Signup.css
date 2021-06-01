@@ -1,0 +1,8 @@
+@media screen and (min-width: 481px) {
+  .Signup{
+    height: 100vh;
+    min-height: 600px;
+    width: 100vw;
+    background-color: #0E1116;
+  }
+}
