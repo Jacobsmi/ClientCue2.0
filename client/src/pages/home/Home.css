@@ -1,0 +1,48 @@
+.Home{
+  height: 100vh;
+  min-height: 600px;
+  width: 100vw;
+  background-color: #0E1116;
+}
+
+header{
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+}
+
+.Logo{
+  margin-left: 2vw;
+  font-size: 1.5vw;
+  font-weight: 600;
+}
+
+nav{
+  flex-grow: 1;
+  text-align: right;
+  margin-right: 10vw;
+}
+nav a{
+  margin-left: 2vw;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+.AccountLinks{
+  margin-right: 2vw;
+}
+
+.AccountLinks a{
+  margin-left: 2vw;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.SignupLink{
+  padding: 8px;
+  background-color: #374A67;
+  border-radius: 8px;
+}
