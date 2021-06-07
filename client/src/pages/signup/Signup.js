@@ -26,18 +26,34 @@ export default function Signup() {
       errorString += '<li>Invalid Last Name</li>'
     }
 
+    // validate email
+    const validEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(document.getElementById("SignupEmail").value)
+    if(!validEmail){
+      errorString += '<li>Invalid Email</li>'
+    }
+
+    // validate password
+    const validPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(document.getElementById("SignupPass").value)
+    if(!validPassword){
+      errorString += '<li>Invalid Password</li>'
+    }
+
+    const passMatch = document.getElementById("SignupPass").value === document.getElementById("SignupConfirm").value
+    if(!passMatch){
+      errorString += '<li>Passwords do not Match</li>'
+    }
 
     // close unordered list and add the error string generated to the div
     errorString += '</ul>'
     document.getElementById("SignupErrors").innerHTML = errorString
 
-    if(validFirstName && validLastName){
+    // If no errors are found make the API call otherwise, display errors
+    if(validFirstName && validLastName && validEmail && validPassword && passMatch){
       console.log("All fields valid")
       setErrors(false)
     }else{
       setErrors(true)
     }
-    console.log(validFirstName)
   }
 
   return (
