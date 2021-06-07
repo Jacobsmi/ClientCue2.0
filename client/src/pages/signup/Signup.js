@@ -8,7 +8,7 @@ export default function Signup() {
 
   function signupSubmit(){
     // Dynamically track any errors found by validation in error string that will be conditionally displayed based on if any errors are found
-    let errorString = 'Error(s): <ul>'
+    let errorString = '<h4>Error(s):</h4> <ul>'
 
     // Input validation
 
@@ -35,7 +35,7 @@ export default function Signup() {
     // validate password
     const validPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(document.getElementById("SignupPass").value)
     if(!validPassword){
-      errorString += '<li>Invalid Password</li>'
+      errorString += '<li>Invalid Password (Password must be 8 characters and have one uppercase and one number)</li>'
     }
 
     const passMatch = document.getElementById("SignupPass").value === document.getElementById("SignupConfirm").value

@@ -7,6 +7,13 @@
     background-color: #0E1116;
     display: grid;
     grid-template-columns: 1fr;
+    overflow-x: hidden;
+  }
+  #SignupErrors{
+    background-color: rgba(255, 0, 0, 0.8);
+    padding-left: 1vw;
+    padding-right: 5vw;
+    width: 70vw;
   }
   .SignupPanel {
     min-height: 100vh;
@@ -81,6 +88,7 @@
     background-color: #0E1116;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    overflow-x: hidden;
   }
   .SignupPanel {
     min-height: 100vh;
@@ -90,7 +98,13 @@
     margin-left: 2vw;
   }
   .SignupForm {
-    margin-top: 10vh;   
+    margin-top: 5vh;   
+  }
+  #SignupErrors{
+    background-color: rgba(255, 0, 0, 0.8);
+    padding-left: 1vw;
+    padding-right: 5vw;
+    width: 30vw;
   }
   .SignupDoubleInputLabel {
     display: inline-block;
