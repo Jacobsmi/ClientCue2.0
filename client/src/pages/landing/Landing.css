@@ -1,5 +1,5 @@
 @media screen and (max-width: 480px) {
-  .Home {
+  .Landing {
     height: 100vh;
     min-height: 600px;
     width: 100vw;
@@ -71,7 +71,7 @@
 }
 
 @media screen and (min-width: 481px) {
-  .Home {
+  .Landing {
     height: 100vh;
     min-height: 600px;
     width: 100vw;

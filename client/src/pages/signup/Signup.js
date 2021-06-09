@@ -6,40 +6,47 @@ export default function Signup() {
 
   const [errors, setErrors] = useState(false)
 
-  function signupSubmit(){
+  async function signupSubmit() {
     // Dynamically track any errors found by validation in error string that will be conditionally displayed based on if any errors are found
     let errorString = '<h4>Error(s):</h4> <ul>'
 
     // Input validation
 
+    const firstName = document.getElementById("SignupFirstName").value
     // validate first name
-    const validFirstName = /^[a-zA-Z\-']{2,50}$/.test(document.getElementById("SignupFirstName").value)
+    const validFirstName = /^[a-zA-Z\-']{2,50}$/.test(firstName)
     // if invalid add to error string
-    if(!validFirstName){
+    if (!validFirstName) {
       errorString += '<li>Invalid First Name</li>'
     }
 
+
+    const lastName = document.getElementById("SignupLastName").value
     // validate last name
-    const validLastName = /^[a-zA-Z\-']{2,50}$/.test(document.getElementById("SignupLastName").value)
+    const validLastName = /^[a-zA-Z\-']{2,50}$/.test(lastName)
     // if invalid add to error string
-    if(!validLastName){
+    if (!validLastName) {
       errorString += '<li>Invalid Last Name</li>'
     }
 
+
+    const email = document.getElementById("SignupEmail").value
     // validate email
-    const validEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(document.getElementById("SignupEmail").value)
-    if(!validEmail){
+    const validEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)
+    if (!validEmail) {
       errorString += '<li>Invalid Email</li>'
     }
 
+
+    const password = document.getElementById("SignupPass").value
     // validate password
-    const validPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(document.getElementById("SignupPass").value)
-    if(!validPassword){
+    const validPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(password)
+    if (!validPassword) {
       errorString += '<li>Invalid Password (Password must be 8 characters and have one uppercase and one number)</li>'
     }
 
-    const passMatch = document.getElementById("SignupPass").value === document.getElementById("SignupConfirm").value
-    if(!passMatch){
+    const passMatch = password === document.getElementById("SignupConfirm").value
+    if (!passMatch) {
       errorString += '<li>Passwords do not Match</li>'
     }
 
@@ -48,10 +55,39 @@ export default function Signup() {
     document.getElementById("SignupErrors").innerHTML = errorString
 
     // If no errors are found make the API call otherwise, display errors
-    if(validFirstName && validLastName && validEmail && validPassword && passMatch){
-      console.log("All fields valid")
+    if (validFirstName && validLastName && validEmail && validPassword && passMatch) {
       setErrors(false)
-    }else{
+      // Make an API call
+      const results = await fetch('http://localhost:5000/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "firstName": firstName,
+          "lastName": lastName,
+          "email": email,
+          "password": password
+        })
+      })
+      const resultsJSON = await results.json()
+      if (resultsJSON.success === false) {
+        if (resultsJSON.msg === 'email not unqiue') {
+          document.getElementById('SignupErrors').innerHTML = 'Error:<li>Email already in use</li>'
+          setErrors(true)
+        } else if (resultsJSON.msg === 'db not properly configured') {
+          document.getElementById('SignupErrors').innerHTML = 'Error:<li>Database error please see server or contact administrator</li>'
+          setErrors(true)
+        } else if (resultsJSON.msg === 'unhandled error inserting into db') {
+          document.getElementById('SignupErrors').innerHTML = 'Error:<li>Unkown server error please see server or contanct administrator</li>'
+          setErrors(true)
+        }
+      }
+      if (resultsJSON.success === true) {
+        setErrors(false)
+        window.location = '/home'
+      }
+    } else {
       setErrors(true)
     }
   }
@@ -62,7 +98,7 @@ export default function Signup() {
       <div className='SignupPanel'>
         <h1>Sign Up</h1>
         <div className='SignupForm'>
-          <div id='SignupErrors' style={{'display': `${errors ? 'block': 'none'}`}}></div>
+          <div id='SignupErrors' style={{ 'display': `${errors ? 'block' : 'none'}` }}></div>
           <span>
             <label htmlFor='SignupFirstName' className='SignupDoubleInputLabel'>First Name</label>
             <label htmlFor='SignupLastName' className='SignupDoubleInputLabel'>Last Name</label>
@@ -80,7 +116,7 @@ export default function Signup() {
           <label htmlFor='SignupConfirm' className='SignupInputLabel'>Confirm Password</label>
           <input className='SignupInput' id='SignupConfirm' type='password'></input>
           <br />
-          
+
           <button className='SignupButton' onClick={signupSubmit}>
             Sign Up
           </button>

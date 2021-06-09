@@ -1,13 +1,22 @@
 const express = require("express")
-
+const cors = require('cors')
 const { Sequelize } = require('sequelize');
 
+// Setup the database connection
 const database = new Sequelize('sqlite:./clientcue.sqlite')
 const User = require('./models/user')(database)
 
+// Create the express app
 const app = express()
-app.use(express.json())
 
+// Setup Cors Options
+const corsOptions ={
+  origin: ['http://localhost:3000']
+}
+
+// Setup middleware
+app.use(express.json())
+app.use(cors(corsOptions))
 
 const port = 5000;
 
@@ -39,17 +48,17 @@ app.post("/signup", async (req, res)=>{
 
       // Check if the error is a table not exist error in which case the DB probably hasn't been set up/configuration failed
       if (errString.includes("no such table")){
-        return res.status(500).send(JSON.stringify({success: false, msg: "db not properly configured"}))
+        return res.status(200).send(JSON.stringify({success: false, msg: "db not properly configured"}))
       }
       // Catch non-unique email
       else if(errString.includes("SequelizeUniqueConstraintError")){
-        return res.status(500).send(JSON.stringify({success: false, msg: "email not unqiue"}))
+        return res.status(200).send(JSON.stringify({success: false, msg: "email not unqiue"}))
       }
       // Handle all other errors
       else{
         console.log(`Error Message: ${err.toString()}`)
         console.log(err)
-        return res.status(500).send(JSON.stringify({success: false, msg: "unhandled error inserting into db"}))
+        return res.status(500).send(JSON.stringify({success: false, msg: "unhandled error inserting into db"})).set()
       }
     }
     // If everything goes well send response
