@@ -1,6 +1,11 @@
 const express = require("express")
 const cors = require('cors')
 const { Sequelize } = require('sequelize');
+var jwt = require('jsonwebtoken');
+
+
+// Set a secret for creating JWT's
+let accessTokenSecret = 'AccessTokenSecret'
 
 // Setup the database connection
 const database = new Sequelize('sqlite:./clientcue.sqlite')
@@ -11,7 +16,8 @@ const app = express()
 
 // Setup Cors Options
 const corsOptions ={
-  origin: ['http://localhost:3000']
+  origin: ['http://localhost:3000'],
+  credentials: true
 }
 
 // Setup middleware
@@ -25,6 +31,9 @@ app.get('/', (req, res) => {
 })
 
 app.post("/signup", async (req, res)=>{
+  //Create a holde for newUser
+  let newUser = null
+
   // Check to see if all information is present in the body of the POST request
   if(!req.body.firstName || !req.body.lastName || !req.body.email || !req.body.password){
     // If info is missing send a 400 error
@@ -34,7 +43,7 @@ app.post("/signup", async (req, res)=>{
   else{
     try{
       // Create a new entry in the database
-      await User.create({
+      newUser = await User.create({
         firstName: req.body.firstName, 
         lastName: req.body.lastName, 
         email: req.body.email, 
@@ -61,6 +70,9 @@ app.post("/signup", async (req, res)=>{
         return res.status(500).send(JSON.stringify({success: false, msg: "unhandled error inserting into db"})).set()
       }
     }
+    // Create an access token that corresponds to the new user's ID
+    let token = jwt.sign({ id: newUser.id }, accessTokenSecret);
+    res.set("Set-Cookie", `accessToken=${token}; httpOnly; Secure;`)
     // If everything goes well send response
     return res.status(200).send(JSON.stringify({success: true}))
   }
